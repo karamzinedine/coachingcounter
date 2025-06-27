@@ -1,102 +1,220 @@
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
-
-<div id="counters" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; padding: 50px 20px; font-family: 'Noto Sans Arabic', sans-serif; text-align: center;">
-
-  <div class="counter-box">
-    <div class="counter-number" data-target="12000">0</div>
-    <div class="counter-label">متدرب ومشارك في البرامج<br>التدريبية</div>
-  </div>
-
-  <div class="counter-box">
-    <div class="counter-number" data-target="100">0</div>
-    <div class="counter-label">جهة ومنظمة حكومية وخاصة تم التعاون معها</div>
-  </div>
-
-  <div class="counter-box">
-    <div class="counter-number" data-target="600">0</div>
-    <div class="counter-label">موظف خدمة عملاء تم تدريبهم في القطاع الحكومي بالبحرين</div>
-  </div>
-
-  <div class="counter-box">
-    <div class="counter-number" data-target="100">0</div>
-    <div class="counter-label">مدير تسويق في منظمات مجتمع مدني عالمية</div>
-  </div>
-
-  <div class="counter-box">
-    <div class="counter-number" data-target="150">0</div>
-    <div class="counter-label">مدير إدارة تم تأهيلهم ضمن مشروع بالسودان</div>
-  </div>
-
-  <div class="counter-box">
-    <div class="counter-number" data-target="20">0</div>
-    <div class="counter-label">دفعة تدريبية تم تخريجها في دورة إعداد المدربين</div>
-  </div>
-
-</div>
-
-<style>
-  #counters {
-    font-family: 'Noto Sans Arabic', sans-serif;
-  }
-
-  .counter-box {
-    width: 250px;
-  }
-
-  .counter-number {
-    font-size: 48px;
-    font-weight: 800;
-    color: #d2a164;
-    margin-bottom: 15px;
-    font-family: 'Noto Sans Arabic', sans-serif;
-  }
-
-  .counter-label {
-    font-size: 16px;
-    color: #333;
-    line-height: 1.7;
-    font-family: 'Noto Sans Arabic', sans-serif;
-  }
-
-  @media (max-width: 600px) {
-    #counters {
-      gap: 20px;
-    }
-
-    .counter-box {
-      flex: 0 0 45%;
-      max-width: 45%;
-    }
-
-    .counter-number {
-      font-size: 36px;
-    }
-
-    .counter-label {
-      font-size: 14px;
-    }
-  }
-</style>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const counters = document.querySelectorAll('.counter-number');
-    counters.forEach(counter => {
-      const target = +counter.getAttribute('data-target');
-      let current = 0;
-      const increment = target / 100;
-
-      const updateCount = () => {
-        current += increment;
-        if (current < target) {
-          counter.innerText = Math.ceil(current);
-          requestAnimationFrame(updateCount);
-        } else {
-          counter.innerText = '+' + target.toLocaleString();
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>العدادات العربية</title>
+    <!-- تحميل خط Noto Sans Arabic مع الأوزان المطلوبة -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
         }
-      };
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        
+        #counters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            padding: 50px 20px;
+            font-family: 'Noto Sans Arabic', 'Arial Unicode MS', sans-serif;
+            text-align: center;
+            direction: rtl;
+            unicode-bidi: bidi-override;
+        }
+        
+        .counter-box {
+            width: 280px;
+            min-height: 180px;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+        
+        .counter-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .counter-number {
+            font-size: 52px;
+            font-weight: 800;
+            color: #d2a164;
+            margin-bottom: 15px;
+            font-family: 'Noto Sans Arabic', 'Arial Unicode MS', sans-serif;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(210, 161, 100, 0.2);
+        }
+        
+        .counter-label {
+            font-size: 16px;
+            color: #2c3e50;
+            line-height: 1.8;
+            font-family: 'Noto Sans Arabic', 'Arial Unicode MS', sans-serif;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        /* تحسينات للجوال - عرض عنصرين في كل صف */
+        @media (max-width: 590px) {
+            #counters {
+                gap: 15px;
+                padding: 30px 15px;
+                justify-content: space-between;
+            }
+            
+            .counter-box {
+                flex: 0 0 calc(50% - 8px);
+                width: calc(50% - 8px);
+                min-width: 0;
+                padding: 20px 15px;
+                min-height: 160px;
+            }
+            
+            .counter-number {
+                font-size: 32px;
+                margin-bottom: 10px;
+            }
+            
+            .counter-label {
+                font-size: 13px;
+                line-height: 1.6;
+                font-weight: 500;
+            }
+        }
+        
+        /* تحسينات إضافية للشاشات الأصغر */
+        @media (max-width: 480px) {
+            .counter-number {
+                font-size: 28px;
+            }
+            
+            .counter-label {
+                font-size: 12px;
+                line-height: 1.5;
+            }
+        }
+        
+        /* تحسينات للتابلت */
+        @media (min-width: 591px) and (max-width: 900px) {
+            .counter-box {
+                width: 240px;
+                flex: 0 0 240px;
+            }
+            
+            #counters {
+                gap: 25px;
+            }
+        }
+        
+        /* تأثير الحركة للأرقام */
+        .counter-number.animate {
+            animation: countUp 0.1s ease-out;
+        }
+        
+        @keyframes countUp {
+            from {
+                transform: scale(1.05);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="counters">
+        <div class="counter-box">
+            <div class="counter-number" data-target="12000">0</div>
+            <div class="counter-label">متدرب ومشارك في البرامج<br>التدريبية</div>
+        </div>
+        <div class="counter-box">
+            <div class="counter-number" data-target="100">0</div>
+            <div class="counter-label">جهة ومنظمة حكومية وخاصة تم التعاون معها</div>
+        </div>
+        <div class="counter-box">
+            <div class="counter-number" data-target="600">0</div>
+            <div class="counter-label">موظف خدمة عملاء تم تدريبهم في القطاع الحكومي بالبحرين</div>
+        </div>
+        <div class="counter-box">
+            <div class="counter-number" data-target="100">0</div>
+            <div class="counter-label">مدير تسويق في منظمات مجتمع مدني عالمية</div>
+        </div>
+        <div class="counter-box">
+            <div class="counter-number" data-target="150">0</div>
+            <div class="counter-label">مدير إدارة تم تأهيلهم ضمن مشروع بالسودان</div>
+        </div>
+        <div class="counter-box">
+            <div class="counter-number" data-target="20">0</div>
+            <div class="counter-label">دفعة تدريبية تم تخريجها في دورة إعداد المدربين</div>
+        </div>
+    </div>
 
-      updateCount();
-    });
-  });
-</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // التأكد من تحميل الخط قبل بدء العد
+            if (document.fonts) {
+                document.fonts.ready.then(() => {
+                    startCounters();
+                });
+            } else {
+                // للمتصفحات القديمة
+                setTimeout(startCounters, 100);
+            }
+            
+            function startCounters() {
+                const counters = document.querySelectorAll('.counter-number');
+                
+                // إعداد Intersection Observer لبدء العد عند ظهور العناصر
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateCounter(entry.target);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                counters.forEach(counter => {
+                    observer.observe(counter);
+                });
+            }
+            
+            function animateCounter(counter) {
+                const target = parseInt(counter.getAttribute('data-target'));
+                let current = 0;
+                const increment = target / 80; // تقليل عدد الخطوات لسرعة أفضل
+                const duration = 2000; // مدة الحركة بالميلي ثانية
+                const stepTime = duration / 80;
+                
+                const updateCount = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.innerText = Math.ceil(current).toLocaleString('en-US');
+                        counter.classList.add('animate');
+                        setTimeout(() => counter.classList.remove('animate'), 100);
+                        setTimeout(updateCount, stepTime);
+                    } else {
+                        // إضافة علامة + وتنسيق الرقم بالأرقام الإنجليزية
+                        const finalNumber = target.toLocaleString('en-US');
+                        counter.innerText = finalNumber + '+';
+                        counter.classList.add('animate');
+                        setTimeout(() => counter.classList.remove('animate'), 100);
+                    }
+                };
+                
+                updateCount();
+            }
+        });
+    </script>
+</body>
+</html>
