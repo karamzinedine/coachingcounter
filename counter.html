@@ -1,0 +1,77 @@
+<div id="counters" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; padding: 50px 20px; font-family: 'Noto Sans Arabic', sans-serif; text-align: center;">
+
+  <div class="counter-box">
+    <div class="counter-number" data-target="12000">0</div>
+    <div class="counter-label">متدرب ومشارك في البرامج<br>التدريبية</div>
+  </div>
+
+  <div class="counter-box">
+    <div class="counter-number" data-target="100">0</div>
+    <div class="counter-label">جهة ومنظمة حكومية وخاصة تم التعاون معها</div>
+  </div>
+
+  <div class="counter-box">
+    <div class="counter-number" data-target="600">0</div>
+    <div class="counter-label">موظف خدمة عملاء تم تدريبهم في القطاع الحكومي بالبحرين</div>
+  </div>
+
+  <div class="counter-box">
+    <div class="counter-number" data-target="100">0</div>
+    <div class="counter-label">مدير تسويق في منظمات مجتمع مدني عالمية</div>
+  </div>
+
+  <div class="counter-box">
+    <div class="counter-number" data-target="150">0</div>
+    <div class="counter-label">مدير إدارة تم تأهيلهم ضمن مشروع بالسودان</div>
+  </div>
+
+  <div class="counter-box">
+    <div class="counter-number" data-target="20">0</div>
+    <div class="counter-label">دفعة تدريبية تم تخريجها في دورة إعداد المدربين</div>
+  </div>
+
+</div>
+
+<style>
+  .counter-box {
+    width: 250px;
+  }
+
+  .counter-number {
+    font-size: 48px;
+    font-weight: 800;
+    color: #d2a164;
+    margin-bottom: 15px;
+    font-family: 'Noto Sans Arabic', sans-serif;
+  }
+
+  .counter-label {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.7;
+    font-family: 'Noto Sans Arabic', sans-serif;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const counters = document.querySelectorAll('.counter-number');
+    counters.forEach(counter => {
+      const target = +counter.getAttribute('data-target');
+      let current = 0;
+      const increment = target / 100;
+
+      const updateCount = () => {
+        current += increment;
+        if (current < target) {
+          counter.innerText = Math.ceil(current);
+          requestAnimationFrame(updateCount);
+        } else {
+          counter.innerText = '+' + target.toLocaleString();
+        }
+      };
+
+      updateCount();
+    });
+  });
+</script>
