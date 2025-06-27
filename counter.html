@@ -1,3 +1,5 @@
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+
 <div id="counters" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; padding: 50px 20px; font-family: 'Noto Sans Arabic', sans-serif; text-align: center;">
 
   <div class="counter-box">
@@ -33,6 +35,10 @@
 </div>
 
 <style>
+  #counters {
+    font-family: 'Noto Sans Arabic', sans-serif;
+  }
+
   .counter-box {
     width: 250px;
   }
@@ -50,6 +56,25 @@
     color: #333;
     line-height: 1.7;
     font-family: 'Noto Sans Arabic', sans-serif;
+  }
+
+  @media (max-width: 600px) {
+    #counters {
+      gap: 20px;
+    }
+
+    .counter-box {
+      flex: 0 0 45%;
+      max-width: 45%;
+    }
+
+    .counter-number {
+      font-size: 36px;
+    }
+
+    .counter-label {
+      font-size: 14px;
+    }
   }
 </style>
 
